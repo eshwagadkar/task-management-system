@@ -1,7 +1,7 @@
 
-const tasks = () => {
+const TaskPage = () => {
 
     return <h1>Tasks</h1>
 }
 
-export default tasks;
+export default TaskPage;
