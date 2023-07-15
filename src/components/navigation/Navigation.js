@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import './navigation.styles.scss';
+import './Navigation.styles.scss';
 
 const Navigation = () => {
     return (
