@@ -1,5 +1,6 @@
-import { Outlet } from 'react-router-dom';
-import Navigation from '../components/navigation/Navigation';
+import { Outlet, Link } from 'react-router-dom';
+
+import MainNavigation from '../components/Navigation/MainNavigation';
 
 import './root.styles.scss';
 
@@ -7,10 +8,11 @@ const RootLayout = () => {
 
     return (
         <>
-        <Navigation />
-        <main className='content'>
-            <Outlet />
-        </main>
+            <MainNavigation />
+            
+            <main className='content'>
+                <Outlet />
+            </main>
         </>
     )
 }
