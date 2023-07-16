@@ -1,4 +1,4 @@
-import Avatar from '../../utility/UIElements/Avatar';
+import Avatar from '../../utility/Components/UIElements/Avatar';
 import './UsersItem.styles.scss';
 
 const UsersItem = props => {

@@ -1,4 +1,5 @@
 import UsersItem from './UsersItem';
+import Card from '../../utility/Components/UIElements/Card';
 import './UsersItem.styles.scss';
 
 const UsersList = props => {
@@ -7,7 +8,9 @@ const UsersList = props => {
     if(props.items.length === 0){
         return (
             <div className='center'>
-                <h2>No Users Found</h2>
+                <Card>
+                  <h2>No Users Found</h2>
+                </Card>
             </div>
         )
     }
