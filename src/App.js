@@ -4,7 +4,7 @@ import './App.styles.scss';
 import RootLayout from './pages/Root';
 import HomePage from './pages/Home/HomePage';
 import TaskCreationPage from './pages/Tasks/TasksCreationPage';
-import TaskListingPage from './pages/Tasks/TasksListingPage';
+import UsersTaskListingPage from './pages/Tasks/UsersTaskListingPage';
 import UserPage from './pages/Users/Users';
 
 const router = createBrowserRouter([
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <HomePage /> },
       { path: '/users/new', element: <TaskCreationPage /> },
-      { path: '/users/tasks', element: <TaskListingPage /> },
+      { path: '/:userId/tasks', element: <UsersTaskListingPage /> },
       { path: '/users', element: <UserPage /> }
     ]
   }
