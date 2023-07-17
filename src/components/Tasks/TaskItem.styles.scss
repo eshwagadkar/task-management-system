@@ -1,0 +1,44 @@
+
+  .place-item {
+     margin: 1rem 0;
+
+
+      &__content {
+            padding: 0;
+      }
+
+      &__info {
+        padding: 1rem;
+        text-align: center;
+      }
+
+      &__info h2, h3, p {
+          margin: 0 0 0.5rem 0;
+      }
+
+      &__actions {
+        padding: 1rem;
+        text-align: center;
+        border-top: 1px solid #ccc;
+      }
+
+        &__modal-content {
+         padding: 0;
+        }
+
+        &__modal-actions {
+          text-align: right;
+        }
+
+        &__actions button,
+        &__actions a {
+          margin: 0.5rem;
+        }
+
+}
+
+@media (min-width: 768px) {
+  .place-item__image {
+    height: 20rem;
+  } 
+}
