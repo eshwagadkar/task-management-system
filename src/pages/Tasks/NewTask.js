@@ -6,7 +6,7 @@ import Button from '../../shared/components/FormElements/Button';
 
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/utility/validator';
 
-import './NewTask.styles.scss';
+import './Task.styles.scss';
 
 const formReducer = (state, action) => {
     switch(action.type) {
@@ -42,6 +42,10 @@ const NewTask = () => {
                 isValid: false
             },
             description: {
+                value: '',
+                isValid: false
+            },
+            dueDate: {
                 value: '',
                 isValid: false
             }

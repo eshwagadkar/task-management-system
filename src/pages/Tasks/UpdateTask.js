@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 
+import './Task.styles.scss';
+
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH} from '../../shared/utility/validator';
 
 const DUMMY_TASKS = [
@@ -42,7 +44,7 @@ const UpdateTask = props => {
 
     return <>
         {/* Edit Flow */}
-        <form>
+        <form className='task-form'>
             {/* Task Title Input */}
             <Input
                 id="title"
