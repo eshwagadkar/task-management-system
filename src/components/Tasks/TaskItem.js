@@ -1,7 +1,7 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
-import Card from '../../utility/components/UIElements/Card';
-import Button from '../../utility/components/FormElements/Button';
+import Card from '../../shared/components/UIElements/Card';
+import Button from '../../shared/components/FormElements/Button';
 
 import './TaskItem.styles.scss';
 
