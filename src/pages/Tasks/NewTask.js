@@ -62,10 +62,10 @@ const NewTask = () => {
     // Form (TASK) Submit Handler
     const taskSubmitHandler = event => {
         event.preventDefault();
-
     }
 
-    return <>
+    return <>   
+        {/* Create Flow */}
         <form className={'task-form'} onSubmit={taskSubmitHandler} >
 
             {/* Task Title Input */}
@@ -102,11 +102,12 @@ const NewTask = () => {
                 onInput={inputHandler}
           />
           
-
+         {/* Form Submit Button */}
           <Button 
             type="submit"
-            disabled={!formState.isValid}
-          >CREATE NEW TASK</Button>
+            disabled={!formState.isValid}>
+            CREATE NEW TASK
+          </Button>
 
         </form>
     </>
