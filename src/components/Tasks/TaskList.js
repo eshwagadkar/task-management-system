@@ -1,4 +1,4 @@
-import Card from '../../utility/Components/UIElements/Card';
+import Card from '../../utility/components/UIElements/Card';
 import TaskItem from './TaskItem';
 
 import './TaskList.styles.scss';
