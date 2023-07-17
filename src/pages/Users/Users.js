@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import UsersList from "../../components/Users/UsersList";
 
 import './Users.styles.scss';
@@ -14,7 +15,9 @@ const UserPage = () => {
         }
       ];
     
-    return <UsersList items={USERS} />; 
+    return <>
+      <Link to="/users/tasks"><UsersList items={USERS} /></Link>
+    </>
 }
 
 export default UserPage;
