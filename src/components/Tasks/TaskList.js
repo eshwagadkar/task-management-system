@@ -17,7 +17,7 @@ const TasksList = props => {
 
     return <ul className='task-list'> 
         {
-            props.items.map(task => <TaskItem task={task} />)
+            props.items.map(task => <TaskItem key={task.id} task={task} />)
         }
     </ul>
 }

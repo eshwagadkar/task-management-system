@@ -9,7 +9,7 @@ const TaskItem = props => {
 
     // const [] = useState(false);
 
-    const { title, description, dueDate } = props.task;
+    const { title, description, dueDate, id } = props.task;
     return <>
         {/* <Modal > */}
             <li className='task-item'>
@@ -23,7 +23,7 @@ const TaskItem = props => {
 
                     {/* Task Actions */}
                     <div className='task-item__actions'>
-                        <Button to={`/tasks/${props.id}`}>EDIT</Button>
+                        <Button to={`/tasks/${id}`}>EDIT</Button>
                         <Button danger>Delete</Button>
                     </div>
                 </Card>
