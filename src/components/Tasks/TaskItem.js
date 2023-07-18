@@ -1,17 +1,31 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 
 import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
+import Modal from '../../shared/components/UIElements/Modal';
 
 import './TaskItem.styles.scss';
 
 const TaskItem = props => {
 
-    // const [] = useState(false);
+    const [showDetail, setShowDetail] = useState(false);
+
+    const openDetailHandler = () => setShowDetail(true);
+    const closeDetailHandler = () => setShowDetail(false);
 
     const { title, description, dueDate, id } = props.task;
     return <>
-        {/* <Modal > */}
+        <Modal 
+            show={showDetail}
+            onCancel={closeDetailHandler}
+            header={title}
+            contentClass='task-item__modal-content'
+            footerClass='task-item__modal-actions'
+            footer={<Button onClick={closeDetailHandler}>CLOSE</Button>}
+        >       
+         <div className='task-item__detail-container'>{description}</div>               
+        </Modal>
+
             <li className='task-item'>
                 <Card className='task-item__content'>
                     {/* Task Item Info */}
@@ -23,12 +37,12 @@ const TaskItem = props => {
 
                     {/* Task Actions */}
                     <div className='task-item__actions'>
+                        <Button onClick={openDetailHandler} inverse>View</Button>
                         <Button to={`/tasks/${id}`}>EDIT</Button>
                         <Button danger>Delete</Button>
                     </div>
                 </Card>
             </li>
-        {/* </Modal> */}
     </>
 }
 

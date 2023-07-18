@@ -3,6 +3,11 @@
 
       margin: 1rem 0;
 
+      &__detail-container{
+        height: 5rem;
+        width: 100%;
+      }
+
       &__content {
             padding: 0;
       }
@@ -39,10 +44,21 @@
           text-align: right;
       }
 
+
 }
 
 @media (min-width: 768px) {
-  .task-item__image {
-    height: 20rem;
-  } 
+  .task-item {
+
+    &__image {
+      height: 20rem;
+    }
+    
+    &__detail-container{
+      height: 10rem;
+      width: 100%;
+    }
+
+  }
+  
 }
