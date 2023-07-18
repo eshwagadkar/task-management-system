@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Input from '../../shared/components/FormElements/Input';
@@ -30,39 +31,74 @@ const DUMMY_TASKS = [
 
 const UpdateTask = props => {
 
+    const [isLoading, setIsLoading] = useState(true);
     const taskId = useParams().taskid;
 
     
-    const identifiedTask = DUMMY_TASKS.find(task => task.id === taskId)
-    
-    const [formState, inputHandler] = useForm({
+    // Leverage useForm(Hook)
+    const [formState, inputHandler, setFormData ] = useForm({
         title: {
-            value: identifiedTask.title,
-            isValid: true
+            value: '',
+            isValid: false
         }, 
         description: {
-            value: identifiedTask.description,
-            isValid: true
+            value: '',
+            isValid: false
         },
         dueDate: {
-            value: identifiedTask.dueDate,
-            isValid: true
+            value: '',
+            isValid: false
         }
-
+        
     }, true)
+    
+    const identifiedTask = DUMMY_TASKS.find(task => task.id === taskId);
 
+    useEffect(() => {
+
+        setFormData({
+            title: {
+                value: identifiedTask.title,
+                isValid: true
+            }, 
+            description: {
+                value: identifiedTask.description,
+                isValid: true
+            },
+            dueDate: {
+                value: identifiedTask.dueDate,
+                isValid: true
+            }
+        }, true);
+        setIsLoading(false)
+    }, [setFormData, identifiedTask] );
+
+
+    const taskSubmitHandler = event => {
+        event.preventDefault();
+        console.log(formState.inputs)
+    }
+
+    // If no task found
     if(!identifiedTask){
         return (
             <div className='center'>
                 <h2>Couldnot find place</h2>
             </div>
-        ) 
-        
+        )   
+    }
+
+    if(isLoading){
+        return (
+            <div className='center'>
+                <h2>Loading...</h2>
+            </div>
+        );   
     }
 
     return <>
         {/* Edit Flow */}
-        <form className='task-form'>
+            <form className='task-form' onSubmit={taskSubmitHandler}>
             {/* Task Title Input */}
             <Input
                 id="title"
@@ -107,7 +143,7 @@ const UpdateTask = props => {
             UPDATE THE TASK
          </Button>
 
-        </form>
+        </form> 
     </>
 }
 
