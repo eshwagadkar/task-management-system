@@ -7,6 +7,7 @@ import NewTask from './pages/Tasks/NewTask';
 import UpdateTask from './pages/Tasks/UpdateTask';
 import ListUserTasks from './pages/Tasks/ListUserTasks';
 import UserPage from './pages/Users/Users';
+import Auth from './pages/Users/Auth';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
       { path: '/:userId/tasks', element: <ListUserTasks /> },
       { path: '/users/new', element: <NewTask /> },
       { path: '/tasks/:taskid', element: <UpdateTask /> },
-      { path: '/users', element: <UserPage /> }
+      { path: '/users', element: <UserPage /> },
+      { path: '/auth', element: <Auth /> }
     ]
   }
 ])
