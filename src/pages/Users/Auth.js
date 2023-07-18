@@ -1,3 +1,5 @@
+import { useState } from 'react';   
+
 import { useForm } from '../../shared/hooks/form-hook';
 
 import Card from '../../shared/components/UIElements/Card';
@@ -11,6 +13,8 @@ import './Auth.styles.scss';
 
 const Auth = () => {
 
+    const [ isLoginMode, setIsLoginMode ] = useState(true);
+
     const [ formState, inputHandler ] = useForm({
         email: {
             value: '',
@@ -23,6 +27,10 @@ const Auth = () => {
     }, 
     false );
 
+    const switchModeHandler = () => {
+        setIsLoginMode(prevMode => !prevMode );
+    }
+
     const authSubmitHandler = event => {
         event.preventDefault();
         console.log(formState.inputs)
@@ -32,7 +40,7 @@ const Auth = () => {
         <Card className="authentication" >
             <h2 className='authentication__header'>Login Required</h2><br />
             <hr />
-            <form>
+            <form onSubmit={authSubmitHandler}>
                 {/* Email Input */}
                 <Input
                  id='email'
@@ -55,8 +63,10 @@ const Auth = () => {
                  onInput={inputHandler}
                  />
 
-                 <Button type="submit" disabled={!formState.isValid}>LOGIN</Button>
+                 <Button type="submit" disabled={!formState.isValid}>{ isLoginMode ? 'LOGIN' : 'SIGNUP' }</Button>
             </form>
+
+                 <Button inverse onClick={switchModeHandler}>SWITCH TO { isLoginMode ? 'SIGNUP' : 'LOGIN'}</Button>
         </Card>
     </>
 };
