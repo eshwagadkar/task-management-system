@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
+import { useForm } from '../../shared/hooks/form-hook';
 
 import './Task.styles.scss';
 
@@ -31,7 +32,24 @@ const UpdateTask = props => {
 
     const taskId = useParams().taskid;
 
+    
     const identifiedTask = DUMMY_TASKS.find(task => task.id === taskId)
+    
+    const [formState, inputHandler] = useForm({
+        title: {
+            value: identifiedTask.title,
+            isValid: true
+        }, 
+        description: {
+            value: identifiedTask.description,
+            isValid: true
+        },
+        dueDate: {
+            value: identifiedTask.dueDate,
+            isValid: true
+        }
+
+    }, true)
 
     if(!identifiedTask){
         return (
@@ -53,9 +71,9 @@ const UpdateTask = props => {
                 label="Title"
                 validators={[ VALIDATOR_REQUIRE()]}
                 errorText="Please enter a valid title."
-                onInput={() => {}}
-                value={identifiedTask.title}
-                valid={true}
+                onInput={inputHandler}
+                initialValue={formState.inputs.title.value}
+                initialValid={formState.inputs.title.isValid}
             />
 
             {/* Task Description Input */}
@@ -65,9 +83,9 @@ const UpdateTask = props => {
                 label="Description"
                 validators={[VALIDATOR_MINLENGTH(5)]}
                 errorText="Please enter a valid description (at least 5 characters)."
-                onInput={() => {}}
-                value={identifiedTask.description}
-                valid={true}
+                onInput={inputHandler}
+                initialValue={formState.inputs.description.value}
+                initialValid={formState.inputs.description.isValid}
             />
 
             {/* Due Date Input */}
@@ -79,13 +97,13 @@ const UpdateTask = props => {
                 placeholder="For ex. 26th August 2023 (in string format)"
                 validators={[VALIDATOR_MINLENGTH(5)]}
                 errorText="Please enter a Due date as a string For. ex. 26th Aug 2023 )."
-                onInput={() => {}}
-                value={identifiedTask.dueDate}
-                valid={true}
+                onInput={inputHandler}
+                initialValue={formState.inputs.dueDate.value}
+                initialValid={formState.inputs.dueDate.isValid}
           />
 
          {/* Form Submit Button */}
-         <Button type="submit" disabled={true}>
+         <Button type="submit" disabled={!formState.isValid}>
             UPDATE THE TASK
          </Button>
 
