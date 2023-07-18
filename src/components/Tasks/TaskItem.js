@@ -9,12 +9,21 @@ import './TaskItem.styles.scss';
 const TaskItem = props => {
 
     const [showDetail, setShowDetail] = useState(false);
+    const [showConfirmModal, setShowConfirmModal ] = useState(false);
 
+    // Handlers to show detailed task 
     const openDetailHandler = () => setShowDetail(true);
     const closeDetailHandler = () => setShowDetail(false);
 
+    // Handlers to show, cancel and confirm a task before deletion. 
+    const showDeleteWarningHandler = () => setShowConfirmModal(true);
+    const cancelDeleteHandler = () => setShowConfirmModal(false);
+    const confirmDeleteHandler = () => { setShowConfirmModal(false); console.log('Deleting') }
+
+
     const { title, description, dueDate, id } = props.task;
     return <>
+        {/* Modal to display detailed view of a task selected */}
         <Modal 
             show={showDetail}
             onCancel={closeDetailHandler}
@@ -24,6 +33,23 @@ const TaskItem = props => {
             footer={<Button onClick={closeDetailHandler}>CLOSE</Button>}
         >       
          <div className='task-item__detail-container'>{description}</div>               
+        </Modal>
+
+        {/* Modal to ensure a task is to be deleted or not */}
+        <Modal 
+            show={showConfirmModal}
+            onCancel={cancelDeleteHandler}
+            header='Are you sure?'
+            footer={
+                <>
+                    <Button inverse onClick={cancelDeleteHandler}>CANCEL</Button>
+                    <Button danger onClick={confirmDeleteHandler}>DELETE</Button> 
+                </>
+            }
+            footerClass='place-item__modal-actions'
+            
+        >
+            <p>Do you want to proceed and delete the task?</p>
         </Modal>
 
             <li className='task-item'>
@@ -39,7 +65,7 @@ const TaskItem = props => {
                     <div className='task-item__actions'>
                         <Button onClick={openDetailHandler} inverse>View</Button>
                         <Button to={`/tasks/${id}`}>EDIT</Button>
-                        <Button danger>Delete</Button>
+                        <Button onClick={showDeleteWarningHandler} danger>Delete</Button>
                     </div>
                 </Card>
             </li>
