@@ -23,15 +23,13 @@ const MainNavigation = props => {
     return <>
         { drawerIsOpen && <BackDrop onClick={closeDrawer}/>}
         {/* Side Drawer */}
-        {
-            drawerIsOpen ? (
-                <SideDrawer>
-                    <nav className="main-navigation__drawer-nav">
-                      <NavLinks />
-                    </nav>
-                </SideDrawer>
-            ) : null
-        }
+
+        <SideDrawer show={drawerIsOpen}>
+            <nav className="main-navigation__drawer-nav">
+               <NavLinks />
+            </nav>
+        </SideDrawer>
+        
         
 
         {/* Main Page Header */}
