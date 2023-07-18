@@ -1,11 +1,10 @@
 
-import { useCallback, useReducer } from 'react';
 
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
+import { useForm } from '../../shared/hooks/form-hook';
 
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/utility/validator';
-import { useForm } from '../../shared/hooks/form-hook';
 import './Task.styles.scss';
 
 
