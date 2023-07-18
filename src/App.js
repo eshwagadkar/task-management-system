@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.styles.scss';
 
@@ -8,6 +9,8 @@ import UpdateTask from './pages/Tasks/UpdateTask';
 import ListUserTasks from './pages/Tasks/ListUserTasks';
 import UserPage from './pages/Users/Users';
 import Auth from './pages/Users/Auth';
+
+import { AuthContext } from './shared/context/authContext';
 
 const router = createBrowserRouter([
   {
@@ -24,8 +27,25 @@ const router = createBrowserRouter([
   }
 ])
 
-function App() {
-  return <RouterProvider router={router}/>
+const App = () => {
+
+  const [ isLoggedIn,  setIsLoggedIn ] = useState(false);
+
+  const login = useCallback(() => {
+    setIsLoggedIn(true)
+  }, [])
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false)
+  }, [])
+
+  return <>
+  <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <RouterProvider router={router}/>
+  </AuthContext.Provider>
+    
+  
+  </>
 }
 
 export default App;
