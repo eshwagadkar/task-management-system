@@ -1,4 +1,6 @@
 import Card from '../../shared/components/UIElements/Card';
+import Button from '../../shared/components/FormElements/Button';
+
 import TaskItem from './TaskItem';
 
 import './TaskList.styles.scss';
@@ -9,7 +11,7 @@ const TasksList = props => {
         return <div className='task-list center'>
             <Card>
                 <h2>No Tasks Found.</h2>
-                <button>Share Task</button>
+                <Button to={`/users/new`}>Create A Task</Button>
             </Card>
         </div>
     }
