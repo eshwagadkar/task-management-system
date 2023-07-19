@@ -35,7 +35,7 @@ const App = () => {
           <Route path='/users/new' element={<NewTask />} />
           <Route path='/tasks/:taskId' element={<UpdateTask />} />
           <Route path='/users' element={<UserPage />} />
-          <Route path="*" element={<Navigate replace to="/" />} />
+          <Route path="*" element={<Navigate replace to='/' />} />
         </Route>
       </Routes>
     );
@@ -44,7 +44,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<RootLayout />}>
           <Route path='/auth' element={<Auth />} />
-          <Route path="*" element={<Navigate replace to="/" />} />
+          <Route path='*' element={<Navigate replace to='/auth' />} />
         </Route>
      </Routes>  
     );

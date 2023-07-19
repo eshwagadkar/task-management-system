@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
 
+import { AuthContext } from '../../shared/context/authContext';
+
 import './TaskItem.styles.scss';
 
 const TaskItem = props => {
+
+    const auth = useContext(AuthContext);
 
     const [showDetail, setShowDetail] = useState(false);
     const [showConfirmModal, setShowConfirmModal ] = useState(false);
@@ -64,8 +68,9 @@ const TaskItem = props => {
                     {/* Task Actions */}
                     <div className='task-item__actions'>
                         <Button onClick={openDetailHandler} inverse>View</Button>
-                        <Button to={`/tasks/${id}`}>EDIT</Button>
-                        <Button onClick={showDeleteWarningHandler} danger>Delete</Button>
+                        { auth.isLoggedIn && <Button to={`/tasks/${id}`}>EDIT</Button> }
+                        { auth.isLoggedIn && <Button onClick={showDeleteWarningHandler} danger>Delete</Button> }
+                        
                     </div>
                 </Card>
             </li>
