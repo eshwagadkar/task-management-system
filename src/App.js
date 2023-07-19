@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import {  Route, Routes, Navigate } from 'react-router-dom'
 import './App.styles.scss';
 
 import RootLayout from './pages/Root';
@@ -11,21 +11,6 @@ import UserPage from './pages/Users/Users';
 import Auth from './pages/Users/Auth';
 
 import { AuthContext } from './shared/context/authContext';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element : <RootLayout />,
-    children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/:userId/tasks', element: <ListUserTasks /> },
-      { path: '/users/new', element: <NewTask /> },
-      { path: '/tasks/:taskid', element: <UpdateTask /> },
-      { path: '/users', element: <UserPage /> },
-      { path: '/auth', element: <Auth /> }
-    ]
-  }
-])
 
 const App = () => {
 
@@ -39,9 +24,35 @@ const App = () => {
     setIsLoggedIn(false)
   }, [])
 
+  let routes;
+
+  if(isLoggedIn) {
+    routes = (
+      <Routes>
+        <Route path='/' element={<RootLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path='/:userId/tasks' element={<ListUserTasks />} />
+          <Route path='/users/new' element={<NewTask />} />
+          <Route path='/tasks/:taskId' element={<UpdateTask />} />
+          <Route path='/users' element={<UserPage />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
+        </Route>
+      </Routes>
+    );
+  } else {
+    routes = (
+      <Routes>
+        <Route path='/' element={<RootLayout />}>
+          <Route path='/auth' element={<Auth />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
+        </Route>
+     </Routes>  
+    );
+  }
+
   return <>
   <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
-    <RouterProvider router={router}/>
+     {routes}
   </AuthContext.Provider>
     
   
