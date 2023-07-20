@@ -14,7 +14,7 @@ const UsersItem = props => {
                 <div className='user-item__info'>
                     <h2>{props.user.name}</h2>
                     <h3>
-                        {props.user.notes} {props.user.notes === 1 ? 'Place' : 'Places' }
+                        {props.user.notes} {props.user.notes === 1 ? 'Task' : 'Tasks' }
                     </h3>
                 </div>
             </div>
